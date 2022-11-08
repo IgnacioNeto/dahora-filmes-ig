@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "dahora-filmes-ig",
-    "slug": "dahora-filmes-ig",
+    "name": "dahora-filmes",
+    "slug": "dahora-filmes",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

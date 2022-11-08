@@ -1,22 +1,31 @@
-import { Button, SafeAreaView, StyleSheet, Text, View } from "react-native";
-import React from "react";
 import { useFonts } from "expo-font";
+import {
+  Button,
+  Image,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
+import logo from "./assets/images/logo.png";
 
 const App = () => {
-  const [fonteCarregada] = useFonts({
+  const [loaded] = useFonts({
     monoton: require("./assets/fonts/Monoton-Regular.ttf"),
   });
+
+  if (!loaded) return <Text>carregando...</Text>;
 
   return (
     <SafeAreaView style={estilos.container}>
       <View style={estilos.viewLogo}>
+        <Image style={estilos.logo} source={logo} />
         <Text style={estilos.tituloApp}>Dá Hora Filmes</Text>
       </View>
       <View style={estilos.viewBotoes}>
         <Button title="Buscar Filmes" />
         <Button title="Favoritos" />
       </View>
-
       <View style={estilos.viewRodape}>
         <Button title="Privacidade" />
         <Button title="Sobre" />
@@ -29,36 +38,37 @@ export default App;
 
 const estilos = StyleSheet.create({
   container: {
-    backgroundColor: "white",
     flex: 1,
-    alignItems: "center",
     justifyContent: "center",
+    alignItems: "center",
   },
   viewLogo: {
-    flex: 3,
-    width: "80%",
     textAlign: "center",
     justifyContent: "flex-end",
     alignItems: "center",
+    flex: 3,
+  },
+  logo: {
+    width: 128,
+    height: 128,
   },
   tituloApp: {
-    fontSize: 36,
     fontFamily: "monoton",
+    fontSize: 32,
     color: "#5451a6",
-    fontWeight: "bold",
   },
   viewBotoes: {
-    flex: 2,
+    width: "80%",
     flexDirection: "row",
     justifyContent: "space-evenly",
+    flex: 2,
     alignItems: "flex-start",
-    width: "80%",
   },
   viewRodape: {
-    flex: 0.5,
+    width: "80%",
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center",
-    width: "80%",
+    flex: 0.5,
+    alignItems: "flex-start",
   },
 });
