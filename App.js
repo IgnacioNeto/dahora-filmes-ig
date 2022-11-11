@@ -34,10 +34,10 @@ const App = () => {
             name="FormBusca"
             options={{ title: "Buscar filmes" }}
           />
+          <Stack.Screen component={Resultados} name="Resultados" />
           <Stack.Screen component={Favoritos} name="Favoritos" />
           <Stack.Screen component={Privacidade} name="Privacidade" />
           <Stack.Screen component={Sobre} name="Sobre" />
-          <Stack.Screen component={Resultados} name="Resultados" />
         </Stack.Navigator>
       </NavigationContainer>
     </>
