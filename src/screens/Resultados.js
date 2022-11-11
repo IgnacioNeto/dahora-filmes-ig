@@ -10,7 +10,7 @@ const Resultados = ({ route }) => {
       try {
         const resposta = await api.get("/search/movie", {
           params: {
-            api_key: "5640ea16560517af05562f572902ef04",
+            api_key: "b76ebff585a05c5086a81a4b8e571f15",
             language: "pt-BR",
             query: filme,
             include_adult: false,
