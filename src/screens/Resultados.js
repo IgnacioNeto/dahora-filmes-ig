@@ -38,15 +38,22 @@ const Resultados = ({ route }) => {
     buscarFilmes();
   }, []);
 
-  if (loading) return <Loading />;
+  // if (loading) return <Loading />;
 
   return (
     <SafeAreaView style={estilos.container}>
       <Text>Você buscou por: {filme}</Text>
+
+      {/* Sintaxe de if evaluate usando && */}
+      {/* Se loading for TRUE, renderize <Loading /> */}
+      {loading && <Loading />}
+
       <View style={estilos.viewFilmes}>
-        {resultados.map((resultado) => {
-          return <Text key={resultado.id}>{resultado.title}</Text>;
-        })}
+        {/* Se loading for FALSE, renderize resultados.map */}
+        {!loading &&
+          resultados.map((resultado) => {
+            return <Text key={resultado.id}>{resultado.title}</Text>;
+          })}
       </View>
     </SafeAreaView>
   );
