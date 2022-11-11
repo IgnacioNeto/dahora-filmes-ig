@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 import api from "../services/api";
+import apiKey from "../../apiKey";
 
 const Resultados = ({ route }) => {
   const { filme } = route.params;
@@ -10,7 +11,7 @@ const Resultados = ({ route }) => {
       try {
         const resposta = await api.get("/search/movie", {
           params: {
-            api_key: "b76ebff585a05c5086a81a4b8e571f15",
+            api_key: apiKey,
             language: "pt-BR",
             query: filme,
             include_adult: false,
