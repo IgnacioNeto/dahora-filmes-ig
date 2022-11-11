@@ -1,7 +1,14 @@
 import { useEffect, useState } from "react";
-import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import {
+  ActivityIndicator,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import api from "../services/api";
 import apiKey from "../../apiKey";
+import Loading from "../componentes/Loading";
 
 const Resultados = ({ route }) => {
   const { filme } = route.params;
@@ -31,7 +38,7 @@ const Resultados = ({ route }) => {
     buscarFilmes();
   }, []);
 
-  if (loading) return <Text>Carregando filmes...</Text>;
+  if (loading) return <Loading />;
 
   return (
     <SafeAreaView style={estilos.container}>
