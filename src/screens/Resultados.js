@@ -6,6 +6,7 @@ import apiKey from "../../apiKey";
 const Resultados = ({ route }) => {
   const { filme } = route.params;
   const [resultados, seteResultados] = useState([]);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     async function buscarFilmes() {
       try {
@@ -18,12 +19,20 @@ const Resultados = ({ route }) => {
           },
         });
         seteResultados(resposta.data.results);
+
+        // Simulando uma conexão lenta
+        setInterval(() => {
+          setLoading(false);
+        }, 3000);
       } catch (error) {
         console.log("Deu ruim na busca da API: " + error.message);
       }
     }
     buscarFilmes();
   }, []);
+
+  if (loading) return <Text>Carregando filmes...</Text>;
+
   return (
     <SafeAreaView style={estilos.container}>
       <Text>Você buscou por: {filme}</Text>
