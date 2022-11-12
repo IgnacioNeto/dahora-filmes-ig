@@ -12,10 +12,7 @@ import { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 
 const FormBusca = ({ navigation }) => {
-  /* state para o filme que será buscado */
   const [filme, setFilme] = useState("");
-
-  /* evento de captura do texinput a partir do onchangetext */
   const capturaDigitacao = (valor) => {
     setFilme(valor);
   };

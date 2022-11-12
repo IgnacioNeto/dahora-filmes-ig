@@ -1,18 +1,19 @@
 import { useEffect, useState } from "react";
 import {
-  ActivityIndicator,
+  Image,
   SafeAreaView,
+  ScrollView,
   StyleSheet,
   Text,
   View,
 } from "react-native";
 import api from "../services/api";
 import apiKey from "../../apiKey";
-import Loading from "../componentes/Loading";
+import Loading from "../components/Loading";
 
 const Resultados = ({ route }) => {
   const { filme } = route.params;
-  const [resultados, seteResultados] = useState([]);
+  const [resultados, setResultados] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     async function buscarFilmes() {
@@ -25,12 +26,10 @@ const Resultados = ({ route }) => {
             include_adult: false,
           },
         });
-        seteResultados(resposta.data.results);
-
-        // Simulando uma conexão lenta
+        setResultados(resposta.data.results);
         setInterval(() => {
           setLoading(false);
-        }, 3000);
+        }, 1000);
       } catch (error) {
         console.log("Deu ruim na busca da API: " + error.message);
       }
@@ -38,21 +37,27 @@ const Resultados = ({ route }) => {
     buscarFilmes();
   }, []);
 
-  // if (loading) return <Loading />;
-
   return (
     <SafeAreaView style={estilos.container}>
       <Text>Você buscou por: {filme}</Text>
-
-      {/* Sintaxe de if evaluate usando && */}
-      {/* Se loading for TRUE, renderize <Loading /> */}
+      {/* Sintaxe de if evaluate usando &&
+      Se loading for truem, renderize <Loading/> */}
       {loading && <Loading />}
-
       <View style={estilos.viewFilmes}>
-        {/* Se loading for FALSE, renderize resultados.map */}
+        {/* Se loading for false, renderize o resultado do map */}
         {!loading &&
           resultados.map((resultado) => {
-            return <Text key={resultado.id}>{resultado.title}</Text>;
+            return (
+              <View key={resultado.id}>
+                <Image
+                  style={estilos.imagem}
+                  source={{
+                    uri: `https://image.tmdb.org/t/p/original/${resultado.poster_path}`,
+                  }}
+                />
+                <Text>{resultado.title}</Text>
+              </View>
+            );
           })}
       </View>
     </SafeAreaView>
@@ -68,5 +73,9 @@ const estilos = StyleSheet.create({
   },
   viewFilmes: {
     marginVertical: 8,
+  },
+  imagem: {
+    height: 160,
+    width: 120,
   },
 });
