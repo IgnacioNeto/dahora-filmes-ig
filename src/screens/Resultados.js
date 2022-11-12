@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import {
+  FlatList,
   Image,
   SafeAreaView,
-  ScrollView,
   StyleSheet,
   Text,
   View,
@@ -10,6 +10,9 @@ import {
 import api from "../services/api";
 import apiKey from "../../apiKey";
 import Loading from "../components/Loading";
+import CardFilme from "../components/CardFilme";
+
+import ItemSeparador from "../components/ItemSeparador";
 
 const Resultados = ({ route }) => {
   const { filme } = route.params;
@@ -40,25 +43,23 @@ const Resultados = ({ route }) => {
   return (
     <SafeAreaView style={estilos.container}>
       <Text>Você buscou por: {filme}</Text>
-      {/* Sintaxe de if evaluate usando &&
-      Se loading for truem, renderize <Loading/> */}
       {loading && <Loading />}
       <View style={estilos.viewFilmes}>
-        {/* Se loading for false, renderize o resultado do map */}
-        {!loading &&
-          resultados.map((resultado) => {
-            return (
-              <View key={resultado.id}>
-                <Image
-                  style={estilos.imagem}
-                  source={{
-                    uri: `https://image.tmdb.org/t/p/original/${resultado.poster_path}`,
-                  }}
-                />
-                <Text>{resultado.title}</Text>
+        {!loading && (
+          <FlatList
+            ItemSeparatorComponent={ItemSeparador}
+            ListEmptyComponent={
+              <View>
+                <Text style={estilos.semFilmes}>Não há filmes!</Text>
               </View>
-            );
-          })}
+            }
+            data={resultados}
+            renderItem={({ item }) => {
+              return <CardFilme filme={item} />;
+            }}
+            keyExtractor={(item) => item.id}
+          />
+        )}
       </View>
     </SafeAreaView>
   );
@@ -73,9 +74,13 @@ const estilos = StyleSheet.create({
   },
   viewFilmes: {
     marginVertical: 8,
+    justifyContent: "center",
+    alignItems: "center",
   },
-  imagem: {
-    height: 160,
-    width: 120,
+  semFilmes: {
+    textAlign: "center",
+    fontSize: 24,
+    fontWeight: "bold",
+    marginVertical: 60,
   },
 });
