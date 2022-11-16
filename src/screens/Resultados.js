@@ -47,6 +47,7 @@ const Resultados = ({ route }) => {
       <View style={estilos.viewFilmes}>
         {!loading && (
           <FlatList
+            showsVerticalScrollIndicator={false}
             ItemSeparatorComponent={ItemSeparador}
             ListEmptyComponent={
               <View>
@@ -74,8 +75,6 @@ const estilos = StyleSheet.create({
   },
   viewFilmes: {
     marginVertical: 8,
-    justifyContent: "center",
-    alignItems: "center",
   },
   semFilmes: {
     textAlign: "center",

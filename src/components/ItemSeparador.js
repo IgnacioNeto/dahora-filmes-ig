@@ -17,5 +17,10 @@ const estilos = StyleSheet.create({
     justifyContent: "center",
     marginVertical: 16,
   },
-  linha: { backgroundColor: "#5451a6", height: 2, width: "80%" },
+  linha: {
+    backgroundColor: "#5451a6",
+    height: 1,
+    width: "80%",
+    opacity: 0.5,
+  },
 });
