@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import React from "react";
+import { Ionicons } from "@expo/vector-icons";
 
 const CardFilme = ({ filme }) => {
   const { title, poster_path } = filme;
@@ -7,6 +8,7 @@ const CardFilme = ({ filme }) => {
     <View style={estilos.card}>
       <Image
         style={estilos.imagem}
+        resizeMode="cover"
         source={{
           uri: `https://image.tmdb.org/t/p/original/${poster_path}`,
         }}
@@ -17,11 +19,15 @@ const CardFilme = ({ filme }) => {
 
         <View style={estilos.botoes}>
           <Pressable style={estilos.botao}>
-            <Text style={estilos.textoBotao}>Leia mais</Text>
+            <Text style={estilos.textoBotao}>
+              <Ionicons name="book" size={12} /> Leia mais
+            </Text>
           </Pressable>
 
           <Pressable style={estilos.botao}>
-            <Text style={estilos.textoBotao}>Salvar</Text>
+            <Text style={estilos.textoBotao}>
+              <Ionicons name="add-circle" size={12} /> Salvar
+            </Text>
           </Pressable>
         </View>
       </View>
@@ -57,5 +63,19 @@ const estilos = StyleSheet.create({
     fontSize: 16,
     paddingVertical: 8,
     textAlign: "center",
+  },
+  botoes: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    marginTop: 8,
+  },
+  botao: {
+    padding: 8,
+    borderWidth: 1,
+  },
+  textoBotao: {
+    color: "#5451a6",
+    fontSize: 12,
+    textTransform: "uppercase",
   },
 });
