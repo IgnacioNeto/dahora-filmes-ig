@@ -75,6 +75,8 @@ const estilos = StyleSheet.create({
   },
   viewFilmes: {
     marginVertical: 8,
+    // justifyContent: "center",
+    // alignItems: "center",
   },
   semFilmes: {
     textAlign: "center",

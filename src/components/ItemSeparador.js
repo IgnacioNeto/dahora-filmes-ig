@@ -15,12 +15,12 @@ const estilos = StyleSheet.create({
   viewSeparador: {
     flexDirection: "row",
     justifyContent: "center",
-    marginVertical: 16,
+    marginVertical: 13,
   },
   linha: {
     backgroundColor: "#5451a6",
-    height: 1,
+    height: 2,
+    marginHorizontal: "10%",
     width: "80%",
-    opacity: 0.5,
   },
 });
