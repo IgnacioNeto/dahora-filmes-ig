@@ -11,7 +11,7 @@ import fundo from "../../assets/images/sem-imagem.jpg";
 import { formataData } from "../utils/funcoes";
 
 const Detalhes = ({ route }) => {
-  /* Prop de route para axessar aos dados trafegados entre a naveção entre as telas/rotas */
+  /* Prop de route para acessar aos dados trafegados entre a naveção entre as telas/rotas */
 
   /* Extraindo dos parametros da rota os dados do objeto filme */
   const { filme } = route.params;
