@@ -1,6 +1,14 @@
 //import o asyncStorage do expo
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { StyleSheet, Text, View, Image, Pressable, Alert } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Pressable,
+  Alert,
+  Vibration,
+} from "react-native";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
@@ -20,6 +28,17 @@ const CardFilme = ({ filme }) => {
     if (!listaDeFilmes) {
       listaDeFilmes = [];
     }
+    /* Etapa de verifivcação de filmes já existente */
+    /*  Para cada filme existente na listaDeFilmes (ja existente), vamos verigicar se o id do filme existente é igual o id do filme do card */
+
+    for (let filmeExistente in listaDeFilmes) {
+      if (listaDeFilmes[filmeExistente].id == filme.id) {
+        Alert.alert("Ops!", "Você já salvou esse filme!");
+        Vibration.vibrate();
+        return;
+      }
+    }
+
     listaDeFilmes.push(filme);
     await AsyncStorage.setItem("@favoritos", JSON.stringify(listaDeFilmes));
     Alert.alert("Favoritos", "Salvo com sucesso!");
