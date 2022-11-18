@@ -2,6 +2,8 @@ import { StyleSheet, Text, View, Image, Pressable, Alert } from "react-native";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+
+import fundo from "../../assets/images/sem-imagem.jpg";
 const CardFilme = ({ filme }) => {
   const { title, poster_path } = filme;
   /* Acessar recursos do React Navigation (Sem props) */
@@ -14,9 +16,13 @@ const CardFilme = ({ filme }) => {
     <View style={estilos.card}>
       <Image
         style={estilos.imagem}
-        source={{
-          uri: `https://image.tmdb.org/t/p/original/${poster_path}`,
-        }}
+        source={
+          poster_path
+            ? {
+                uri: `https://image.tmdb.org/t/p/original/${poster_path}`,
+              }
+            : fundo
+        }
       />
       <View style={estilos.corpo}>
         <Text style={estilos.titulo}>{title}</Text>
